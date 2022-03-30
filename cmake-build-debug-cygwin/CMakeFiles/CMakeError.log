@@ -1,0 +1,120 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_0c4e1 && [1/2] Building C object CMakeFiles/cmTC_0c4e1.dir/CMakeCCompilerABI.c.o
+gcc.exe: error: /cygdrive/c/Users/klokov/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeCCompilerABI.c: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+[2/2] Linking C executable cmTC_0c4e1.exe
+FAILED: cmTC_0c4e1.exe 
+: && /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe  -Wl,--enable-auto-import -v CMakeFiles/cmTC_0c4e1.dir/CMakeCCompilerABI.c.o -o cmTC_0c4e1.exe -Wl,--out-implib,libcmTC_0c4e1.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && :
+gcc.exe: error: CMakeFiles/cmTC_0c4e1.dir/CMakeCCompilerABI.c.o: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+COLLECT_LTO_WRAPPER=c:/programdata/telit/iot_appzone_ide_5x/mingw_msys/bin/../libexec/gcc/mingw32/5.3.0/lto-wrapper.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+ninja: build stopped: subcommand failed.
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_2546e && [1/2] Building C object CMakeFiles/cmTC_2546e.dir/testCCompiler.c.o
+FAILED: CMakeFiles/cmTC_2546e.dir/testCCompiler.c.o 
+/cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe    -o CMakeFiles/cmTC_2546e.dir/testCCompiler.c.o -c '/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c'
+gcc.exe: error: /cygdrive/d/�/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c: No such file or directory
+gcc.exe: fatal error: no input files
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_4eff1 && [1/2] Building C object CMakeFiles/cmTC_4eff1.dir/CMakeCCompilerABI.c.o
+gcc.exe: error: /cygdrive/c/Users/klokov/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeCCompilerABI.c: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+[2/2] Linking C executable cmTC_4eff1.exe
+FAILED: cmTC_4eff1.exe 
+: && /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe  -Wl,--enable-auto-import -v CMakeFiles/cmTC_4eff1.dir/CMakeCCompilerABI.c.o -o cmTC_4eff1.exe -Wl,--out-implib,libcmTC_4eff1.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && :
+gcc.exe: error: CMakeFiles/cmTC_4eff1.dir/CMakeCCompilerABI.c.o: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+COLLECT_LTO_WRAPPER=c:/programdata/telit/iot_appzone_ide_5x/mingw_msys/bin/../libexec/gcc/mingw32/5.3.0/lto-wrapper.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+ninja: build stopped: subcommand failed.
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_95330 && [1/2] Building C object CMakeFiles/cmTC_95330.dir/testCCompiler.c.o
+FAILED: CMakeFiles/cmTC_95330.dir/testCCompiler.c.o 
+/cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe    -o CMakeFiles/cmTC_95330.dir/testCCompiler.c.o -c '/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c'
+gcc.exe: error: /cygdrive/d/�/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c: No such file or directory
+gcc.exe: fatal error: no input files
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_0de2b && [1/2] Building C object CMakeFiles/cmTC_0de2b.dir/CMakeCCompilerABI.c.o
+gcc.exe: error: /cygdrive/c/Users/klokov/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeCCompilerABI.c: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+[2/2] Linking C executable cmTC_0de2b.exe
+FAILED: cmTC_0de2b.exe 
+: && /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe  -Wl,--enable-auto-import -v CMakeFiles/cmTC_0de2b.dir/CMakeCCompilerABI.c.o -o cmTC_0de2b.exe -Wl,--out-implib,libcmTC_0de2b.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && :
+gcc.exe: error: CMakeFiles/cmTC_0de2b.dir/CMakeCCompilerABI.c.o: No such file or directory
+Using built-in specs.
+COLLECT_GCC=C:\ProgramData\Telit\IoT_AppZone_IDE_5x\mingw_msys\bin\gcc.exe
+COLLECT_LTO_WRAPPER=c:/programdata/telit/iot_appzone_ide_5x/mingw_msys/bin/../libexec/gcc/mingw32/5.3.0/lto-wrapper.exe
+Target: mingw32
+Configured with: ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls : (reconfigured) ../src/gcc-5.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --prefix=/mingw --disable-win32-registry --target=mingw32 --with-arch=i586 --enable-languages=c,c++,objc,obj-c++,fortran,ada --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --with-tune=generic --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 5.3.0 (GCC) 
+ninja: build stopped: subcommand failed.
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_46b9d && [1/2] Building C object CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o
+FAILED: CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o 
+/cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe    -o CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o -c '/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c'
+gcc.exe: error: /cygdrive/d/�/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c: No such file or directory
+gcc.exe: fatal error: no input files
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+

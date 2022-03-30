@@ -1,0 +1,11 @@
+# ninja log v5
+3	187	6703350011613990	CMakeFiles/data_structure.dir/main.c.obj	ac77643f5e077e53
+187	360	6703350013306742	data_structure.exe	26f1f08d300dc275
+14	192	6703282375438554	CMakeFiles/data_structure.dir/hash_bable.c.obj	6ea49d4d9215f9df
+1	1587	6703391762160546	build.ninja	8463bf8147f67bbd
+2	238	6703391764855540	CMakeFiles/data_structure.dir/main.c.obj	ac77643f5e077e53
+239	378	6703391766170683	data_structure.exe	72cafc4c762d2cb
+2	129	6703391976895016	CMakeFiles/data_structure.dir/main.c.obj	ac77643f5e077e53
+129	247	6703391978053747	data_structure.exe	72cafc4c762d2cb
+2	134	6703392125979293	CMakeFiles/data_structure.dir/main.c.obj	ac77643f5e077e53
+134	271	6703392127294306	data_structure.exe	72cafc4c762d2cb

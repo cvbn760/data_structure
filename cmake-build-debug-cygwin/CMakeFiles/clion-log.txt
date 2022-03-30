@@ -1,0 +1,37 @@
+C:\Users\klokov\AppData\Local\JetBrains\CLion2021.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe" -G Ninja /cygdrive/d/С/data_structure
+-- The C compiler identification is GNU 5.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe
+-- Check for working C compiler: /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe - broken
+CMake Error at /cygdrive/c/Users/klokov/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeTestCCompiler.cmake:69 (message):
+  The C compiler
+
+    "/cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: /cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe cmTC_46b9d && [1/2] Building C object CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o
+    FAILED: CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o 
+    /cygdrive/c/ProgramData/Telit/IoT_AppZone_IDE_5x/mingw_msys/bin/gcc.exe    -o CMakeFiles/cmTC_46b9d.dir/testCCompiler.c.o -c '/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c'
+    gcc.exe: error: /cygdrive/d/�/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeTmp/testCCompiler.c: No such file or directory
+    gcc.exe: fatal error: no input files
+    compilation terminated.
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:2 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeOutput.log".
+See also "/cygdrive/d/С/data_structure/cmake-build-debug-cygwin/CMakeFiles/CMakeError.log".

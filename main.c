@@ -1,17 +1,43 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+
 #include "tree.h"
+#include "tree.c"
+//#include "hash_bable.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int main() {
-    Tree *tree = new_tree(DECIMAL_ELEM, STRING_ELEM);
+//
+//#include "number571/tree.h"
 
-    set_tree(tree, decimal(50), string("A"));
-    set_tree(tree, decimal(40), string("B"));
+int main(void) {
+//    HashTab *hashtab = new_hashtab(10000, STRING_ELEM, STRING_ELEM);
+//
+//    set_hashtab(hashtab, string("A"), string("dg"));
+//    set_hashtab(hashtab, string("B"), string("gfdfdsg"));
+//    set_hashtab(hashtab, string("C"), string("gdsg"));
+//    set_hashtab(hashtab, string("D"), string("tr9ieu"));
+//
+//    print_hashtab(hashtab);
+//    free_hashtab(hashtab);
 
-//    del_tree(tree, decimal(40));
+    Tree *tree = new_tree(STRING_ELEM, STRING_ELEM);
 
-    int64_t x = 15;
-    if (in_tree(tree, decimal(x))) {
-        printf("%lf\n", get_tree(tree, decimal(x)).real);
+    char *kOne = "keyOne";
+    char *kTwo = "keyTwo";
+
+    char *vOne = "valOne";
+    char *vTwo = "valTwo";
+
+    set_tree(tree, kOne, vOne);
+    set_tree(tree, kTwo, vTwo);
+
+//    del_tree(tree, string(40));
+
+    if (in_tree(tree, kTwo)) {
+        printf("%s\n", get_tree(tree, kTwo));
     }
 
     print_tree_as_list(tree);
