@@ -9,10 +9,10 @@
 
 #include "tree.h"
 
-static tree_node *_new_node(vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value);
+static tree_node *_new_node(char *key, char *value);
 static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value);
-static void _set_key(tree_node *node, vtype_tree_t tkey, char *key);
-static void _set_value(tree_node *node, vtype_tree_t tvalue, char *value);
+static void _set_key(tree_node *node, char *key);
+static void _set_value(tree_node *node, char *value);
 static void _free_tree(tree_node *node);
 static void _print_tree_as_list(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
 static void _print_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
@@ -69,7 +69,7 @@ extern value_tree_t get_tree(Tree *tree, char *key) {
 
 extern void set_tree(Tree *tree, char *key, char *value) {
     if (tree->node == NULL) {
-        tree->node = _new_node(tree->type.key, tree->type.value, key, value);
+        tree->node = _new_node(key, value);
         return;
     }
     _set_tree(tree->node, tree->type.key, tree->type.value, key, value);
@@ -103,21 +103,21 @@ extern void print_tree(Tree *tree) {
 /* STATIC BEGIN */
 /* ============ */
 
-static tree_node *_new_node(vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value) {
+static tree_node *_new_node(char *key, char *value) {
     tree_node *node = (tree_node*)malloc(sizeof(tree_node));
-    _set_key(node, tkey, key);
-    _set_value(node, tvalue, value);
+    _set_key(node, key);
+    _set_value(node, value);
     node->left = NULL;
     node->right = NULL;
     node->parent = NULL;
     return node;
 }
 
-static void _set_key(tree_node *node, vtype_tree_t tkey, char *key) {
+static void _set_key(tree_node *node, char *key) {
     node->data.key.string = key;
 }
 
-static void _set_value(tree_node *node, vtype_tree_t tvalue, char *value) {
+static void _set_value(tree_node *node, char *value) {
     node->data.value.string = value;
 }
 
@@ -126,20 +126,20 @@ static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, c
             cond = strcmp(key, node->data.key.string);
             if (cond > 0) {
                 if (node->right == NULL) {
-                    node->right = _new_node(tkey, tvalue, key, value);
+                    node->right = _new_node(key, value);
                     node->right->parent = node;
                 } else {
                     _set_tree(node->right, tkey, tvalue, key, value);
                 }
             } else if (cond < 0) {
                 if (node->left == NULL) {
-                    node->left = _new_node(tkey, tvalue, key, value);
+                    node->left = _new_node(key, value);
                     node->left->parent = node;
                 } else {
                     _set_tree(node->left, tkey, tvalue, key, value);
                 }
             } else {
-                _set_value(node, tvalue, value);
+                _set_value(node, value);
             }
 }
 
