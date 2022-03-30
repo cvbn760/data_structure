@@ -10,14 +10,10 @@
 //#include "m2mb/m2mb_types.h"
 
 typedef enum {
-    DECIMAL_ELEM,
-    REAL_ELEM,
     STRING_ELEM,
 } vtype_tree_t;
 
 typedef union {
-//    INT64 decimal;
-//    FLOAT64 real;
     char *string;
 } value_tree_t;
 
@@ -46,10 +42,6 @@ extern value_tree_t get_tree(Tree *tree, char *key);
 extern void set_tree(Tree *tree, char *key, char *value);
 extern void del_tree(Tree *tree, char *key);
 extern _Bool in_tree(Tree *tree, char *key);
-
-//extern void *decimal(INT64 x);
-extern void *string(char *x);
-//extern void *real(FLOAT64 x);
 
 extern void print_tree(Tree *tree);
 extern void print_tree_as_list(Tree *tree);

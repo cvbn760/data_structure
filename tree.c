@@ -26,30 +26,16 @@ static void _del3_tree(tree_node *node);
 /* EXTERN BEGIN */
 /* ============ */
 
-//extern void *decimal(INT64 x) {
-//    return (void*)x;
-//}
-
-extern void *string(char *x) {
-    return (void*)x;
-}
-
-//extern void *real(FLOAT64 x) {
-//    FLOAT64 *f = (FLOAT64*)malloc(sizeof(FLOAT64));
-//    *f = x;
-//    return (void*)f;
-//}
-
 extern Tree *new_tree(vtype_tree_t key, vtype_tree_t value) {
     switch(key){
-        case DECIMAL_ELEM: case STRING_ELEM:
+       case STRING_ELEM:
             break;
         default:
             fprintf(stderr, "%s\n", "key type not supported");
             return NULL;
     }
     switch(value) {
-        case DECIMAL_ELEM: case REAL_ELEM: case STRING_ELEM:
+        case STRING_ELEM:
             break;
         default:
             fprintf(stderr, "%s\n", "value type not supported");
@@ -128,56 +114,15 @@ static tree_node *_new_node(vtype_tree_t tkey, vtype_tree_t tvalue, char *key, c
 }
 
 static void _set_key(tree_node *node, vtype_tree_t tkey, char *key) {
-    switch(tkey) {
-        case REAL_ELEM:
-        case DECIMAL_ELEM:
-//            node->data.key.decimal = (INT64)key;
-            break;
-        case STRING_ELEM:
-            node->data.key.string = key;
-            break;
-    }
+    node->data.key.string = key;
 }
 
 static void _set_value(tree_node *node, vtype_tree_t tvalue, char *value) {
-    switch(tvalue) {
-        case DECIMAL_ELEM:
-//            node->data.value.decimal = (INT64)value;
-            break;
-        case REAL_ELEM:
-//            node->data.value.real = *(FLOAT64*)value;
-//            free((FLOAT64*)value);
-            break;
-        case STRING_ELEM:
-            node->data.value.string = value;
-            break;
-    }
+    node->data.value.string = value;
 }
 
 static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value) {
     int cond = 0;
-    switch(tkey) {
-        case REAL_ELEM:
-        case DECIMAL_ELEM:
-//            if ((INT64)key > node->data.key.decimal) {
-//                if (node->right == NULL) {
-//                    node->right = _new_node(tkey, tvalue, key, value);
-//                    node->right->parent = node;
-//                } else {
-//                    _set_tree(node->right, tkey, tvalue, key, value);
-//                }
-//            } else if ((INT64)key < node->data.key.decimal) {
-//                if (node->left == NULL) {
-//                    node->left = _new_node(tkey, tvalue, key, value);
-//                    node->left->parent = node;
-//                } else {
-//                    _set_tree(node->left, tkey, tvalue, key, value);
-//                }
-//            } else {
-//                _set_value(node, tvalue, value);
-//            }
-            break;
-        case STRING_ELEM:
             cond = strcmp(key, node->data.key.string);
             if (cond > 0) {
                 if (node->right == NULL) {
@@ -196,8 +141,6 @@ static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, c
             } else {
                 _set_value(node, tvalue, value);
             }
-            break;
-    }
 }
 
 static tree_node *_get_tree(tree_node *node, vtype_tree_t tkey, char *key) {
@@ -205,23 +148,12 @@ static tree_node *_get_tree(tree_node *node, vtype_tree_t tkey, char *key) {
     if (node == NULL) {
         return NULL;
     }
-//    switch(tkey) {
-//        case DECIMAL_ELEM:
-//            if ((INT64)key > node->data.key.decimal) {
-//                return _get_tree(node->right, tkey, key);
-//            } else if ((int64_t)key < node->data.key.decimal) {
-//                return _get_tree(node->left, tkey, key);
-//            }
-//            break;
-//        case STRING_ELEM:
-            cond = strcmp(key, node->data.key.string);
-            if (cond > 0) {
-                return _get_tree(node->right, tkey, key);
-            } else if (cond < 0) {
-                return _get_tree(node->left, tkey, key);
-            }
-//            break;
-//    }
+    cond = strcmp(key, node->data.key.string);
+    if (cond > 0) {
+        return _get_tree(node->right, tkey, key);
+    } else if (cond < 0) {
+        return _get_tree(node->left, tkey, key);
+    }
     return node;
 }
 
@@ -282,36 +214,8 @@ static void _del3_tree(tree_node *node) {
 }
 
 static void _print_tree_elem(tree_node *node) {
-//    switch(tkey) {
-//        case DECIMAL_ELEM:
-//            printf(" [%d => ", node->data.key.decimal);
-//            switch(tvalue) {
-//                case DECIMAL_ELEM:
-//                    printf("%d] ", node->data.value.decimal);
-//                    break;
-//                case REAL_ELEM:
-//                    printf("%lf] ", node->data.value.real);
-//                    break;
-//                case STRING_ELEM:
-//                    printf("'%s'] ", node->data.value.string);
-//                    break;
-//            }
-//            break;
-//        case STRING_ELEM:
-            printf(" ['%s' => ", node->data.key.string);
-//            switch(tvalue) {
-//                case DECIMAL_ELEM:
-//                    printf("%d] ", node->data.value.decimal);
-//                    break;
-//                case REAL_ELEM:
-//                    printf("%lf] ", node->data.value.real);
-//                    break;
-//                case STRING_ELEM:
-                    printf("'%s'] ", node->data.value.string);
-//                    break;
-//            }
-//            break;
-//    }
+    printf(" ['%s' => ", node->data.key.string);
+    printf("'%s'] ", node->data.value.string);
 }
 
 static void _print_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
