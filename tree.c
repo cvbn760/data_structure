@@ -5,77 +5,112 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "m2mb/m2mb_types.h"
-
 #include "tree.h"
 
 static tree_node *_new_node(char *key, char *value);
-static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value);
-static void _set_key(tree_node *node, char *key);
-static void _set_value(tree_node *node, char *value);
-static void _free_tree(tree_node *node);
-static void _print_tree_as_list(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
-static void _print_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
-static void _print_tree_elem(tree_node *node);
-static tree_node *_get_tree(tree_node *node, vtype_tree_t tkey, char *key);
+
+static void addForNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value);
+
+static void setKey(tree_node *node, char *key);
+
+static void setValue(tree_node *node, char *value);
+
+static void deleteNode(tree_node *node);
+
+static void printNodeAsList(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
+
+static void printNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue);
+
+static void printNodeContnt(tree_node *node);
+
+static tree_node *getNodeIfExist(tree_node *node, vtype_tree_t tkey, char *key);
+
 static tree_node *_del1_tree(Tree *tree, vtype_tree_t tkey, char *key);
+
 static void _del2_tree(Tree *tree, tree_node *node);
+
 static void _del3_tree(tree_node *node);
 
-/* ============ */
-/* EXTERN BEGIN */
-/* ============ */
-
-extern Tree *new_tree(vtype_tree_t key, vtype_tree_t value) {
-    switch(key){
-       case STRING_ELEM:
-            break;
-        default:
-            fprintf(stderr, "%s\n", "key type not supported");
-            return NULL;
+/**
+ * Конструктор экземпляра структуры "Tree"
+ * @param key типы хранимых ключей
+ * @param value типы хранимых значений
+ * @return
+ */
+extern Tree *newTree(vtype_tree_t key, vtype_tree_t value) {
+    // Проверка типа ключа
+    if (key != STRING_ELEM) {
+        printf("%s\n", "key type not supported");
+        return NULL;
     }
-    switch(value) {
-        case STRING_ELEM:
-            break;
-        default:
-            fprintf(stderr, "%s\n", "value type not supported");
-            return NULL;
+    // Провекта типа значения
+    if (value != STRING_ELEM) {
+        printf("%s\n", "value type not supported");
+        return NULL;
     }
-    Tree *tree = (Tree*)malloc(sizeof(Tree));
+    // Выделение памяти
+    Tree *tree = (Tree *) malloc(sizeof(Tree));
     tree->type.key = key;
     tree->type.value = value;
-    tree->node = NULL;
+    tree->root = NULL;
     return tree;
 }
 
-extern void free_tree(Tree *tree) {
-    _free_tree(tree->node);
+/**
+ * Освободить память. Удалить дерево
+ * @param tree дерево
+ */
+extern void freeTree(Tree *tree) {
+    deleteNode(tree->root);
     free(tree);
 }
 
-extern _Bool in_tree(Tree *tree, char *key) {
-    return _get_tree(tree->node, tree->type.key, key) != NULL;
+/**
+ * Содержит ли дерево элемент данным ключем
+ * @param tree дерево
+ * @param key ключ
+ * @return (1 - true / 0 - false)
+ */
+extern int containsElementTree(Tree *tree, char *key) {
+    return getNodeIfExist(tree->root, tree->type.key, key) != NULL;
 }
 
-extern value_tree_t get_tree(Tree *tree, char *key) {
-    tree_node *node = _get_tree(tree->node, tree->type.key, key);
+/**
+ * Достать из элемент по его ключу
+ * @param tree адрес дерева
+ * @param key адрес ключа
+ * @return значение элемента
+ */
+extern value_tree_t getElementTree(Tree *tree, char *key) {
+    tree_node *node = getNodeIfExist(tree->root, tree->type.key, key);
     if (node == NULL) {
-        fprintf(stderr, "%s\n", "value undefined");
+        printf("value undefined\n");
         value_tree_t none;
         return none;
     }
     return node->data.value;
 }
 
-extern void set_tree(Tree *tree, char *key, char *value) {
-    if (tree->node == NULL) {
-        tree->node = _new_node(key, value);
+/**
+ * Добавить в дерево новый узел
+ * @param tree адрес дерева
+ * @param key адрес ключа узла
+ * @param value адрес значения узла
+ */
+extern void addElementTree(Tree *tree, char *key, char *value) {
+    if (tree->root == NULL) {
+        tree->root = _new_node(key, value);
         return;
     }
-    _set_tree(tree->node, tree->type.key, tree->type.value, key, value);
+    addForNode(tree->root, tree->type.key, tree->type.value, key, value);
 }
 
-extern void del_tree(Tree *tree, char *key) {
+/**
+ * Удалить из дерева элемент по его ключу
+ * @param tree адрес дерева
+ * @param key адрес ключа
+ */
+extern void deleteByKeyTree(Tree *tree, char *key) {
     tree_node *node = _del1_tree(tree, tree->type.key, key);
     if (node == NULL) {
         return;
@@ -88,78 +123,79 @@ extern void del_tree(Tree *tree, char *key) {
     return;
 }
 
-extern void print_tree_as_list(Tree *tree) {
-    putchar('[');
-    _print_tree_as_list(tree->node, tree->type.key, tree->type.value);
-    printf("]\n");
+/**
+ * Распе
+ * @param tree
+ */
+extern void printTreeAsList(Tree *tree) {
+    printNodeAsList(tree->root, tree->type.key, tree->type.value);
 }
 
-extern void print_tree(Tree *tree) {
-    _print_tree(tree->node, tree->type.key, tree->type.value);
-    putchar('\n');
+extern void printTree(Tree *tree) {
+    printNode(tree->root, tree->type.key, tree->type.value);
 }
 
-/* ============ */
-/* STATIC BEGIN */
-/* ============ */
 
 static tree_node *_new_node(char *key, char *value) {
-    tree_node *node = (tree_node*)malloc(sizeof(tree_node));
-    _set_key(node, key);
-    _set_value(node, value);
+    tree_node *node = (tree_node *) malloc(sizeof(tree_node));
+    setKey(node, key);
+    setValue(node, value);
     node->left = NULL;
     node->right = NULL;
     node->parent = NULL;
     return node;
 }
 
-static void _set_key(tree_node *node, char *key) {
+// Установить ключ для ноды
+static void setKey(tree_node *node, char *key) {
     node->data.key.string = key;
 }
 
-static void _set_value(tree_node *node, char *value) {
+// Установить значение для ноды
+static void setValue(tree_node *node, char *value) {
     node->data.value.string = value;
 }
 
-static void _set_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value) {
+// Добавить потомка для ноды
+static void addForNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value) {
     int cond = 0;
-            cond = strcmp(key, node->data.key.string);
-            if (cond > 0) {
-                if (node->right == NULL) {
-                    node->right = _new_node(key, value);
-                    node->right->parent = node;
-                } else {
-                    _set_tree(node->right, tkey, tvalue, key, value);
-                }
-            } else if (cond < 0) {
-                if (node->left == NULL) {
-                    node->left = _new_node(key, value);
-                    node->left->parent = node;
-                } else {
-                    _set_tree(node->left, tkey, tvalue, key, value);
-                }
-            } else {
-                _set_value(node, value);
-            }
+    cond = strcmp(key, node->data.key.string);
+    if (cond > 0) {
+        if (node->right == NULL) {
+            node->right = _new_node(key, value);
+            node->right->parent = node;
+        } else {
+            addForNode(node->right, tkey, tvalue, key, value);
+        }
+    } else if (cond < 0) {
+        if (node->left == NULL) {
+            node->left = _new_node(key, value);
+            node->left->parent = node;
+        } else {
+            addForNode(node->left, tkey, tvalue, key, value);
+        }
+    } else {
+        setValue(node, value);
+    }
 }
 
-static tree_node *_get_tree(tree_node *node, vtype_tree_t tkey, char *key) {
+static tree_node *getNodeIfExist(tree_node *node, vtype_tree_t tkey, char *key) {
     int cond = 0;
     if (node == NULL) {
         return NULL;
     }
     cond = strcmp(key, node->data.key.string);
     if (cond > 0) {
-        return _get_tree(node->right, tkey, key);
+        return getNodeIfExist(node->right, tkey, key);
     } else if (cond < 0) {
-        return _get_tree(node->left, tkey, key);
+        return getNodeIfExist(node->left, tkey, key);
     }
     return node;
 }
 
 static tree_node *_del1_tree(Tree *tree, vtype_tree_t tkey, char *key) {
-    tree_node *node = tree->node;
-    node =  _get_tree(node, tkey, key);
+    tree_node *node = tree->root;
+    node = getNodeIfExist(node, tkey, key);
     if (node == NULL) {
         return NULL;
     }
@@ -168,7 +204,7 @@ static tree_node *_del1_tree(Tree *tree, vtype_tree_t tkey, char *key) {
     }
     tree_node *parent = node->parent;
     if (parent == NULL) {
-        tree->node = NULL;
+        tree->root = NULL;
     } else if (parent->left == node) {
         parent->left = NULL;
     } else {
@@ -187,7 +223,7 @@ static void _del2_tree(Tree *tree, tree_node *node) {
         temp = node->left;
     }
     if (parent == NULL) {
-        tree->node = temp;
+        tree->root = temp;
     } else if (parent->left == node) {
         parent->left = temp;
     } else {
@@ -213,37 +249,40 @@ static void _del3_tree(tree_node *node) {
     free(ptr);
 }
 
-static void _print_tree_elem(tree_node *node) {
-    printf(" ['%s' => ", node->data.key.string);
-    printf("'%s'] ", node->data.value.string);
+static void printNodeContnt(tree_node *node) {
+    printf("[%s => %s]", node->data.key.string, node->data.value.string);
 }
 
-static void _print_tree(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
+static void printNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
     if (node == NULL) {
         printf("null");
         return;
     }
-    putchar('(');
-    _print_tree(node->left, tkey, tvalue);
-    _print_tree_elem(node);
-    _print_tree(node->right, tkey, tvalue);
-    putchar(')');
+    printf("(");
+    printNode(node->left, tkey, tvalue);
+    printNodeContnt(node);
+    printNode(node->right, tkey, tvalue);
+    printf(")");
 }
 
-static void _print_tree_as_list(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
+static void printNodeAsList(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
     if (node == NULL) {
         return;
     }
-    _print_tree_as_list(node->left, tkey, tvalue);
-    _print_tree_elem(node);
-    _print_tree_as_list(node->right, tkey, tvalue);
+    printNodeAsList(node->left, tkey, tvalue);
+    printNodeContnt(node);
+    printNodeAsList(node->right, tkey, tvalue);
 }
 
-static void _free_tree(tree_node *node) {
+/**
+ * Удалить узел дерева
+ * @param node адрес узла
+ */
+static void deleteNode(tree_node *node) {
     if (node == NULL) {
         return;
     }
-    _free_tree(node->left);
-    _free_tree(node->right);
+    deleteNode(node->left);
+    deleteNode(node->right);
     free(node);
 }

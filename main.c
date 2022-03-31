@@ -5,7 +5,8 @@
 
 #include "tree.h"
 #include "tree.c"
-//#include "hash_bable.h"
+#include "hash_table.h"
+#include "hash_table.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,34 +14,47 @@
 //#include "number571/tree.h"
 
 int main(void) {
-//    HashTab *hashtab = new_hashtab(10000, STRING_ELEM, STRING_ELEM);
-//
-//    set_hashtab(hashtab, string("A"), string("dg"));
-//    set_hashtab(hashtab, string("B"), string("gfdfdsg"));
-//    set_hashtab(hashtab, string("C"), string("gdsg"));
-//    set_hashtab(hashtab, string("D"), string("tr9ieu"));
-//
-//    print_hashtab(hashtab);
-//    free_hashtab(hashtab);
 
-    Tree *tree = new_tree(STRING_ELEM, STRING_ELEM);
+    Tree *tree = newTree(STRING_ELEM, STRING_ELEM);
 
-    char *kOne = "keyOne";
-    char *kTwo = "keyTwo";
+    char *a = "key1";
+    char *b = "key2";
+    char *c = "key3";
+    char *d = "key4";
 
-    char *vOne = "valOne";
-    char *vTwo = "valTwo";
+    char *e = "val1";
+    char *f = "val2";
+    char *g = "val3";
+    char *h = "val4";
 
-    set_tree(tree, kOne, vOne);
-    set_tree(tree, kTwo, vTwo);
+    addElementTree(tree, a, e);
+    addElementTree(tree, b, f);
+    addElementTree(tree, c, g);
+    addElementTree(tree, d, h);
 
-//    del_tree(tree, string(40));
+//    deleteByKeyTree(tree, c);
 
-    if (in_tree(tree, kTwo)) {
-        printf("%s\n", get_tree(tree, kTwo));
-    }
+//    if (containsElementTree(tree, d)) {
+//        log_i("%lf\n", getElementTree(tree, d));
+//    }
 
-    print_tree_as_list(tree);
-    free_tree(tree);
+    printTree(tree);
+    freeTree(tree);
+
+    printf("\nnext hash table\n");
+
+    HashTab *hashtab = newHT(200, STRING_ELEM, STRING_ELEM);
+
+    addElementHT(hashtab, a, e);
+    addElementHT(hashtab, b, f);
+    addElementHT(hashtab, c, g);
+    addElementHT(hashtab, d, h);
+
+    printHT(hashtab);
+
+    printf("%d", containsElementHT(hashtab, a));
+    freeHT(hashtab);
+
+
     return 0;
 }

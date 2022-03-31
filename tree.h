@@ -1,13 +1,10 @@
 //
 // Created by klokov on 29.03.2022.
 //
-
 #ifndef FLASHCONST_TREE_H
 #define FLASHCONST_TREE_H
-#pragma once
 
 #include <stdint.h>
-//#include "m2mb/m2mb_types.h"
 
 typedef enum {
     STRING_ELEM,
@@ -17,32 +14,40 @@ typedef union {
     char *string;
 } value_tree_t;
 
+// Структура узел
 typedef struct tree_node {
     struct {
         value_tree_t key;
         value_tree_t value;
-    } data;
-    struct tree_node *left;
-    struct tree_node *right;
-    struct tree_node *parent;
+    } data;                      // Вложенная структура - данные узла. Содержит ключ и значение
+    struct tree_node *left;      // Левый потомок
+    struct tree_node *right;     // Правый потомок
+    struct tree_node *parent;    // Родитель
 } tree_node;
 
+// Структура дерево
 typedef struct Tree {
     struct {
         vtype_tree_t key;
         vtype_tree_t value;
-    } type;
-    struct tree_node *node;
+    } type;                 // Вложенная структура - тип. Содержит тип хранимого ключа и тип хранимого значения
+    struct tree_node *root; // Корень
 } Tree;
 
-extern Tree *new_tree(vtype_tree_t key, vtype_tree_t value);
-extern void free_tree(Tree *tree);
+extern Tree *newTree(vtype_tree_t key, vtype_tree_t value);
 
-extern value_tree_t get_tree(Tree *tree, char *key);
-extern void set_tree(Tree *tree, char *key, char *value);
-extern void del_tree(Tree *tree, char *key);
-extern _Bool in_tree(Tree *tree, char *key);
+extern void freeTree(Tree *tree);
 
-extern void print_tree(Tree *tree);
-extern void print_tree_as_list(Tree *tree);
+extern value_tree_t getElementTree(Tree *tree, char *key);
+
+extern void addElementTree(Tree *tree, char *key, char *value);
+
+extern void deleteByKeyTree(Tree *tree, char *key);
+
+extern int containsElementTree(Tree *tree, char *key);
+
+extern void printTree(Tree *tree);
+
+extern void printTreeAsList(Tree *tree);
+
 #endif //FLASHCONST_TREE_H
