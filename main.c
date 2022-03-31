@@ -3,15 +3,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "tree.h"
-#include "tree.c"
-#include "hash_table.h"
-#include "hash_table.c"
+#include "data_structure/tree.h"
+#include "data_structure/tree.c"
+#include "data_structure/hash_table.h"
+#include "data_structure/hash_table.c"
 #include <stdio.h>
 #include <stdlib.h>
-
-//
-//#include "number571/tree.h"
 
 int main(void) {
 
@@ -32,7 +29,7 @@ int main(void) {
     addElementTree(tree, c, g);
     addElementTree(tree, d, h);
 
-//    deleteByKeyTree(tree, c);
+    deleteByKeyTree(tree, c);
 
 //    if (containsElementTree(tree, d)) {
 //        log_i("%lf\n", getElementTree(tree, d));
@@ -54,7 +51,5 @@ int main(void) {
 
     printf("%d", containsElementHT(hashtab, a));
     freeHT(hashtab);
-
-
     return 0;
 }
