@@ -32,6 +32,7 @@ typedef struct Tree {
         vtype_tree_t value;
     } type;                 // Вложенная структура - тип. Содержит тип хранимого ключа и тип хранимого значения
     struct tree_node *root; // Корень
+    uint8_t numberNodes;
 } Tree;
 
 extern Tree *newTree(vtype_tree_t key, vtype_tree_t value);
@@ -50,4 +51,6 @@ extern void printTree(Tree *tree);
 
 extern void printTreeAsList(Tree *tree);
 
+
+extern char *toString(tree_node *node);
 #endif //FLASHCONST_TREE_H

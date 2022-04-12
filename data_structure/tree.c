@@ -6,10 +6,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "tree.h"
+#include "../instruments/char_service.h"
+#include "../instruments/char_service.c"
 
 static tree_node *_new_node(char *key, char *value);
 
-static void addForNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value);
+static void addForNode(Tree *tree,tree_node *node, char *key, char *value);
 
 static void setKey(tree_node *node, char *key);
 
@@ -31,6 +33,7 @@ static void _del2_tree(Tree *tree, tree_node *node);
 
 static void _del3_tree(tree_node *node);
 
+static char *toStringNode(tree_node *node);
 /**
  * Конструктор экземпляра структуры "Tree"
  * @param key типы хранимых ключей
@@ -53,6 +56,7 @@ extern Tree *newTree(vtype_tree_t key, vtype_tree_t value) {
     tree->type.key = key;
     tree->type.value = value;
     tree->root = NULL;
+    tree->numberNodes = 0;
     return tree;
 }
 
@@ -98,11 +102,15 @@ extern value_tree_t getElementTree(Tree *tree, char *key) {
  * @param value адрес значения узла
  */
 extern void addElementTree(Tree *tree, char *key, char *value) {
-    if (tree->root == NULL) {
-        tree->root = _new_node(key, value);
+    if (key == NULL || value == NULL){
         return;
     }
-    addForNode(tree->root, tree->type.key, tree->type.value, key, value);
+    if (tree->root == NULL) {
+        tree->root = _new_node(key, value);
+        tree->numberNodes++;
+        return;
+    }
+    addForNode(tree,tree->root, key, value);
 }
 
 /**
@@ -117,6 +125,7 @@ extern void deleteByKeyTree(Tree *tree, char *key) {
     }
     if (node->left != NULL && node->right != NULL) {
         _del3_tree(node);
+        tree->numberNodes--;
         return;
     }
     _del2_tree(tree, node);
@@ -157,22 +166,24 @@ static void setValue(tree_node *node, char *value) {
 }
 
 // Добавить потомка для ноды
-static void addForNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue, char *key, char *value) {
+static void addForNode(Tree *tree,tree_node *node, char *key, char *value) {
     int cond = 0;
     cond = strcmp(key, node->data.key.string);
     if (cond > 0) {
         if (node->right == NULL) {
             node->right = _new_node(key, value);
             node->right->parent = node;
+            tree->numberNodes++;
         } else {
-            addForNode(node->right, tkey, tvalue, key, value);
+            addForNode(tree,node->right, key, value);
         }
     } else if (cond < 0) {
         if (node->left == NULL) {
             node->left = _new_node(key, value);
             node->left->parent = node;
+            tree->numberNodes++;
         } else {
-            addForNode(node->left, tkey, tvalue, key, value);
+            addForNode(tree,node->left, key, value);
         }
     } else {
         setValue(node, value);
@@ -211,6 +222,7 @@ static tree_node *_del1_tree(Tree *tree, vtype_tree_t tkey, char *key) {
         parent->right = NULL;
     }
     free(node);
+    tree->numberNodes--;
     return NULL;
 }
 
@@ -231,6 +243,7 @@ static void _del2_tree(Tree *tree, tree_node *node) {
     }
     temp->parent = parent;
     free(node);
+    tree->numberNodes--;
 }
 
 static void _del3_tree(tree_node *node) {
@@ -251,6 +264,27 @@ static void _del3_tree(tree_node *node) {
 
 static void printNodeContnt(tree_node *node) {
     printf("[%s => %s]", node->data.key.string, node->data.value.string);
+}
+
+extern char *toString(tree_node *node){
+    if (node == NULL){
+        return multConc(1,"");
+    }
+    char *leftNode = toString(node->left);
+    char *currNode = toStringNode(node);
+    char *rightNode = toString(node->right);
+    char *res = multConc(3, leftNode, rightNode, currNode);
+    free(leftNode);
+    free(currNode);
+    free(rightNode);
+    return res;
+}
+
+static char *toStringNode(tree_node *node){
+    if (node == NULL){
+        return multConc(1,"");
+    }
+    return multConc(4, node->data.key.string, "=",node->data.value.string, "\r\n");
 }
 
 static void printNode(tree_node *node, vtype_tree_t tkey, vtype_tree_t tvalue) {
