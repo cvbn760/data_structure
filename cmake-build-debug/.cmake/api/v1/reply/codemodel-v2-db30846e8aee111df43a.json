@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/С/data_structure/cmake-build-debug",
-		"source" : "D:/С/data_structure"
+		"build" : "D:/C_temp/data_structure/cmake-build-debug",
+		"source" : "D:/C_temp/data_structure"
 	},
 	"version" : 
 	{
